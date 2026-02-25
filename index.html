@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Afet Destek Paneli</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div id="offline-banner" class="hidden">⚠️ Bağlantı kesildi. Yerel veriler gösteriliyor.</div>
+
+  <header class="header">
+    <div class="logo">AFET<span>DESTEK</span></div>
+    <button id="theme-toggle" class="theme-btn" aria-label="Tema değiştir">🌙</button>
+  </header>
+
+  <nav class="navbar">
+    <div class="filter-group" id="filter-buttons">
+      <button class="filter-btn active" data-filter="category" data-value="all">Tümü</button>
+      <button class="filter-btn" data-filter="category" data-value="Gıda">Gıda</button>
+      <button class="filter-btn" data-filter="category" data-value="Barınma">Barınma</button>
+      <button class="filter-btn" data-filter="category" data-value="Lojistik">Lojistik</button>
+      <button class="filter-btn" data-filter="category" data-value="Sağlık">Sağlık</button>
+
+      <button class="filter-btn acil-btn" data-filter="status" data-value="acil">Acil</button>
+
+      <button class="action-btn ilan-btn" id="btn-open-ilan">
+        <i class="fa-solid fa-plus"></i> İlan Ver
+      </button>
+      <button class="action-btn destek-btn" id="btn-open-destek">
+        Destek Ver
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Form Panel -->
+    <div id="form-panel" class="form-panel hidden">
+      <div class="form-head">
+        <h3 id="form-title">İlan Ver</h3>
+        <button class="close-btn" id="btn-close-form" aria-label="Kapat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="post-form">
+        <div class="form-row">
+          <label>Kategori</label>
+          <select id="form-category" required>
+            <option value="" selected disabled>Seçiniz</option>
+            <option>Gıda</option>
+            <option>Barınma</option>
+            <option>Lojistik</option>
+            <option>Sağlık</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>Başlık</label>
+          <input id="form-title-input" type="text" placeholder="Örn: Battaniye ihtiyacı" required />
+        </div>
+
+        <div class="form-row">
+          <label>Açıklama</label>
+          <textarea id="form-desc" rows="4" placeholder="Detay yaz. ('acil' yazarsan acil olur)" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <label>Konum</label>
+          <input id="form-location" type="text" placeholder="Örn: İstanbul / Avcılar" required />
+        </div>
+
+        <div class="form-row">
+          <label>E-posta (iletişim)</label>
+          <input id="form-email" type="email" placeholder="ornek@mail.com" required />
+        </div>
+
+        <button class="submit-btn" type="submit">Kaydet</button>
+      </form>
+    </div>
+
+    <h2 class="section-title">Aktif Yardım İlanları</h2>
+    <div id="listing-container" class="grid"></div>
+
+    <h2 class="section-title" style="margin-top: 50px;">İlanlarım</h2>
+    <div id="my-posts-container" class="grid"></div>
+
+    <h2 class="section-title" style="margin-top: 50px;">Üstlendiğim Görevler</h2>
+    <div id="task-container" class="grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
