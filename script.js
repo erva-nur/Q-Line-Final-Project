@@ -11,7 +11,7 @@ const filters = { category: "all", status: "all" };
 let currentPostMode = "ihtiyac"; 
 let editingPostId = null;        
 
-/* -------------------- TEMA -------------------- */
+
 const themeBtn = document.getElementById("theme-toggle");
 const savedTheme = localStorage.getItem(LS_THEME) || "dark";
 document.body.classList.toggle("light", savedTheme === "light");
@@ -24,7 +24,7 @@ themeBtn.addEventListener("click", () => {
   themeBtn.textContent = isLight ? "☀️" : "🌙";
 });
 
-/* -------------------- YARDIMCI -------------------- */
+
 function pick(obj, keys) {
   for (const k of keys) {
     const v = obj?.[k];
@@ -149,7 +149,7 @@ function balanceHalfApi(list, key) {
   return list;
 }
 
-/* -------------------- VERİ YÜKLE -------------------- */
+
 async function loadData() {
   try {
     const res = await fetch(API_URL, { cache: "no-store" });
@@ -181,7 +181,7 @@ async function loadData() {
   }
 }
 
-/* -------------------- FİLTRE + RENDER -------------------- */
+
 function applyFiltersAndRender() {
   let list = [...dataStore];
 
@@ -227,7 +227,7 @@ function renderListings(list) {
   container.innerHTML = list.map(item => makeCard(item)).join("");
 }
 
-/* -------------------- İLANLARIM (SİL + DÜZENLE) -------------------- */
+
 function getUserPosts() {
   return JSON.parse(localStorage.getItem(LS_USER_POSTS)) || [];
 }
@@ -285,7 +285,7 @@ function openEditPost(id) {
   panel.classList.remove("hidden");
 }
 
-/* -------------------- GÖREVLER -------------------- */
+
 function getTasks() {
   return JSON.parse(localStorage.getItem(LS_TASKS)) || [];
 }
@@ -339,7 +339,7 @@ function renderMyTasks() {
   }).join("");
 }
 
-/* -------------------- NAVBAR FİLTRE -------------------- */
+
 document.getElementById("filter-buttons").addEventListener("click", (e) => {
   if (!e.target.classList.contains("filter-btn")) return;
 
@@ -363,7 +363,7 @@ document.getElementById("filter-buttons").addEventListener("click", (e) => {
   applyFiltersAndRender();
 });
 
-/* -------------------- FORM AÇ/KAPA + KAYDET -------------------- */
+
 const panel = document.getElementById("form-panel");
 const formTitleEl = document.getElementById("form-title");
 const postForm = document.getElementById("post-form");
@@ -463,7 +463,7 @@ postForm.addEventListener("submit", (e) => {
   renderMyPosts();
 });
 
-/* -------------------- OFFLINE BANDI -------------------- */
+
 window.addEventListener("offline", () => {
   document.getElementById("offline-banner").classList.remove("hidden");
 });
@@ -471,7 +471,8 @@ window.addEventListener("online", () => {
   document.getElementById("offline-banner").classList.add("hidden");
 });
 
-/* -------------------- BAŞLAT -------------------- */
+
 loadData();
 renderMyTasks();
+
 renderMyPosts();
